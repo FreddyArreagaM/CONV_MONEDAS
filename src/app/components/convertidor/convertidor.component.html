@@ -1,0 +1,40 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="mb-3">
+                <label for="formcantidad" class="form-label">Ingresar cantidad</label>
+                <input type="number" [(ngModel)]="cantidad" (input)="convertir()"
+                class="form-control form-control-lg" id="formcantidad" placeholder="Ingrese cantidad">
+            </div>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-lg-6">
+            <label for="formtengo" class="form-label">Tengo</label>
+            <select class="form-select form-control-lg" [(ngModel)]="tengo" (change)="convertir()"
+                id="formtengo" aria-label="Default select example">
+                <option *ngFor="let moneda of monedas">{{moneda}}</option>
+            </select>
+        </div>
+
+        <div class="col-lg-6">
+            <label for="formquiero" class="form-label">Quiero</label>
+            <select class="form-select form-control-lg" [(ngModel)]="quiero" (change)="convertir()"
+                id="formquiero" aria-label="Default select example">
+                <option *ngFor="let moneda2 of monedas">{{moneda2}}</option>
+            </select>
+        </div>
+    </div>
+
+    <h5 *ngIf="cantidad > 0" class="text-center mt-5">
+        <span class="badge bg-success">{{cantidad}} {{tengo}}</span>
+        <span class="badge bg-secondary">SON</span>
+        <span class="badge bg-success">{{total | number : '0.0-0'}} {{quiero}}</span>
+        <!--{{total | number : '0.0-0'}} 
+            Esta declaración permite deliminar los decimales 
+            0. -> al entero
+            0.'0' -> mínimo de decimales
+            0.0-'2' -> máximo de decimales permitidos
+        -->
+    </h5>
+</div>
